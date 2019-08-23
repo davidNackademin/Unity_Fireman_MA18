@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   left: 1
+  fireman: {fileID: 282065698}
 --- !u!1 &2081072787
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,3 +598,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   left: 0
+  fireman: {fileID: 282065698}
