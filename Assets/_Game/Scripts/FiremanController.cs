@@ -9,6 +9,18 @@ public class FiremanController : MonoBehaviour
 
     private int currentPosition = 1;
 
+    private void OnEnable()
+    {
+        ButtonInput.OnLeft += OnLeftPressed;
+        ButtonInput.OnRight += OnRightPressed;
+    }
+
+    private void OnDisable()
+    {
+        ButtonInput.OnLeft -= OnLeftPressed;
+        ButtonInput.OnRight -= OnRightPressed;
+    }
+
     private void Start()
     {
         UpdatePosition();
