@@ -9,12 +9,14 @@ public class FiremanController : MonoBehaviour
 
     private int currentPosition = 1;
 
+    // prenumerera på eventen från ButtonInput
     private void OnEnable()
     {
         ButtonInput.OnLeft += OnLeftPressed;
         ButtonInput.OnRight += OnRightPressed;
     }
 
+    //avsluta prenumerationerna från ButtonInput
     private void OnDisable()
     {
         ButtonInput.OnLeft -= OnLeftPressed;
@@ -26,6 +28,8 @@ public class FiremanController : MonoBehaviour
         UpdatePosition();
     }
 
+
+    // kommer köras när OnLeft eventet har triggads pga av prenumerationen i OnEnable
     public void OnLeftPressed()
     {
 
@@ -36,6 +40,7 @@ public class FiremanController : MonoBehaviour
         }
     }
 
+    // kommer köras när OnRight eventet har triggads pga av prenumerationen i OnEnable
     public void OnRightPressed()
     {
 

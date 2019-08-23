@@ -6,24 +6,21 @@ public class ButtonInput : MonoBehaviour
 {
     public bool left;
 
+
+    // deklarera 2st event 
     public delegate void ButtonPressed();
     public static event ButtonPressed OnLeft;
     public static event ButtonPressed OnRight;
-
-
-    // public FiremanController fireman;
 
     private void OnMouseDown()
     {
         if (OnLeft != null && left) // kolla att vi har åtminstonde en prenumerant på vårt event
         {
-            OnLeft();
-          //  fireman.OnLeftPressed();
+            OnLeft(); // trigga event Left
         }
         else if (OnRight != null)
         {
-            OnRight();
-           // fireman.OnRightPressed();      
+            OnRight(); // trigga event Right
         }
     }
 }
