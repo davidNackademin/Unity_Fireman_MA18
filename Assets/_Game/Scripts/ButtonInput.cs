@@ -6,18 +6,17 @@ public class ButtonInput : MonoBehaviour
 {
     public bool left;
 
+    public FiremanController fireman;
+
     private void OnMouseDown()
     {
         if (left)
         {
-            Debug.Log("touch left!");
-        } else
-        {
-            Debug.Log("Touch Right");
+            fireman.OnLeftPressed();
         }
-
-        
+        else
+        {
+            fireman.OnRightPressed();      
+        }
     }
-
-
 }
