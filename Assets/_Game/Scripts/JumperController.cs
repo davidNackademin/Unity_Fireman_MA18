@@ -6,7 +6,7 @@ public class JumperController : MonoBehaviour
 {
     [SerializeField]
     private List<Transform> positions = new List<Transform>();
-    int currentPosition = 0;
+    public int currentPosition = 0;
     float lastMoveTime;
     float moveDelay = 1.0f;
     
@@ -45,10 +45,19 @@ public class JumperController : MonoBehaviour
 
         if (currentPosition >= positions.Count)
         {
-            currentPosition = 0;
+
+            GameObject parent = transform.parent.gameObject;
+            Destroy(parent);
+
+            //gameObject.SetActive(false);
+            // currentPosition = 0;
+            // ta bort vår jumper och eventuellt ge poäng
+        }
+        else
+        {
+            transform.position = positions[currentPosition].position;
         }
 
-        transform.position = positions[currentPosition].position;
     }
 
 }
