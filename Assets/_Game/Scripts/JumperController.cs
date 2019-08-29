@@ -13,7 +13,7 @@ public class JumperController : MonoBehaviour
 
     private void Start()
     {
-        transform.position = positions[currentPosition].position;
+        UpdatePosition();
         lastMoveTime = Time.time;
 
         StartCoroutine(Move());
@@ -55,9 +55,22 @@ public class JumperController : MonoBehaviour
         }
         else
         {
-            transform.position = positions[currentPosition].position;
+            UpdatePosition();
         }
 
     }
+
+    void UpdatePosition()
+    {
+        transform.position = positions[currentPosition].position;
+        //if (transform.position.y < -2.7)
+        if(positions[currentPosition].gameObject.tag == "DangerPosition")
+        {
+            Debug.Log("Danger!!!!");
+        }
+
+
+    }
+
 
 }

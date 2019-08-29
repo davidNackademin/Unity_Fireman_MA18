@@ -134,6 +134,7 @@ MonoBehaviour:
   - {fileID: 4645006327917393072}
   - {fileID: 4645006329502830716}
   - {fileID: 4645006329305234653}
+  currentPosition: 0
 --- !u!1 &4645006327917393087
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +274,7 @@ GameObject:
   - component: {fileID: 4645006328938528325}
   m_Layer: 0
   m_Name: Position (4)
-  m_TagString: Untagged
+  m_TagString: DangerPosition
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,7 +334,7 @@ GameObject:
   - component: {fileID: 4645006329466451256}
   m_Layer: 0
   m_Name: Position (2)
-  m_TagString: Untagged
+  m_TagString: DangerPosition
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -393,7 +394,7 @@ GameObject:
   - component: {fileID: 4645006329502830716}
   m_Layer: 0
   m_Name: Position (6)
-  m_TagString: Untagged
+  m_TagString: DangerPosition
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
