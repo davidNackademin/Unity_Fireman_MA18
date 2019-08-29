@@ -9,7 +9,11 @@ public class JumperController : MonoBehaviour
     public int currentPosition = 0;
     float lastMoveTime;
     float moveDelay = 1.0f;
-    
+    float deathDelay = 0.5f;
+
+    private bool dead = false;
+
+    public LayerMask layerMask;
 
     private void Start()
     {
@@ -30,7 +34,7 @@ public class JumperController : MonoBehaviour
 
     IEnumerator Move()
     {
-        while (true)
+        while (!dead)
         {
             yield return new WaitForSeconds(moveDelay);
             MoveToNextPosition();
@@ -46,12 +50,7 @@ public class JumperController : MonoBehaviour
         if (currentPosition >= positions.Count)
         {
 
-            GameObject parent = transform.parent.gameObject;
-            Destroy(parent);
-
-            //gameObject.SetActive(false);
-            // currentPosition = 0;
-            // ta bort vår jumper och eventuellt ge poäng
+            DestroyJumper();
         }
         else
         {
@@ -63,13 +62,34 @@ public class JumperController : MonoBehaviour
     void UpdatePosition()
     {
         transform.position = positions[currentPosition].position;
-        //if (transform.position.y < -2.7)
         if(positions[currentPosition].gameObject.tag == "DangerPosition")
         {
-            Debug.Log("Danger!!!!");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position,  Vector2.down,
+                                                    Mathf.Infinity, layerMask);
+            //om ingen fireman finns under oss
+            if( hit.collider == null)
+            {
+               StartCoroutine( Crash() );
+            }
+
         }
+    }
+
+    IEnumerator Crash()
+    {
+        dead = true;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(deathDelay);
+        DestroyJumper();
+    }
 
 
+    void DestroyJumper()
+    {
+        GameObject parent = transform.parent.gameObject;
+        Destroy(parent);
     }
 
 
