@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class ButtonInput : MonoBehaviour
 {
-    public bool left;
+    public enum Button
+    {
+        left,
+        right
+    }
 
+    //public bool left;
+    public Button button;
 
     // deklarera 2st event 
     public delegate void ButtonPressed();
@@ -14,11 +20,11 @@ public class ButtonInput : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (OnLeft != null && left) // kolla att vi har åtminstonde en prenumerant på vårt event
+        if (OnLeft != null && button == Button.left) // kolla att vi har åtminstonde en prenumerant på vårt event
         {
             OnLeft(); // trigga event Left
         }
-        else if (OnRight != null)
+        else if (OnRight != null && button == Button.right)
         {
             OnRight(); // trigga event Right
         }

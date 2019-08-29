@@ -630,6 +630,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumperPrefab: {fileID: 3400302986542492355, guid: 05b903d155803469ebabe14fff3a64e6,
     type: 3}
+  spawnDelay: 3
+  deltaRandomSpawn: 0.5
 --- !u!1 &1456374958
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8d86c82d27e42e29708c723a62806e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: 1
+  button: 0
 --- !u!1 &2081072787
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,4 +816,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8d86c82d27e42e29708c723a62806e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: 0
+  button: 1
