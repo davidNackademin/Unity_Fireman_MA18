@@ -49,7 +49,6 @@ public class JumperController : MonoBehaviour
 
         if (currentPosition >= positions.Count)
         {
-
             DestroyJumper();
         }
         else
@@ -70,6 +69,12 @@ public class JumperController : MonoBehaviour
             if( hit.collider == null)
             {
                StartCoroutine( Crash() );
+                // TODO: säg till GameManager att vi crashat
+
+            }
+            else
+            {
+                //TODO: Säg till GameManager att vi räddats
             }
 
         }
