@@ -5,10 +5,11 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public int lives = 3;
+    public int startLives = 3;
     int points = 0;
 
 	public TextMeshPro scoreText;
+	public LivesController livesController;
 
     void OnEnable()
 	{
@@ -25,12 +26,16 @@ public class GameManager : MonoBehaviour
     void Start()
 	{
 		UpdateScoreLabel();
+		livesController.InitLives(startLives);
 	}
 
 
 	public void JumperCrashed()
 	{
-		lives--;
+		if (!livesController.RemoveLife() )
+		{
+			Debug.Log("GAME OVER!");
+		}
 	}
 
     public void JumperSaved()
