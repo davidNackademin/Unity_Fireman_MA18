@@ -11,6 +11,9 @@ public class JumperController : MonoBehaviour
     float moveDelay = 1.0f;
     float deathDelay = 0.5f;
 
+    [HideInInspector]
+	public GameManager gameManager;
+
     private bool dead = false;
 
     public LayerMask layerMask;
@@ -68,13 +71,12 @@ public class JumperController : MonoBehaviour
             //om ingen fireman finns under oss
             if( hit.collider == null)
             {
-               StartCoroutine( Crash() );
-                // TODO: säg till GameManager att vi crashat
-
+                StartCoroutine( Crash() );
+				gameManager.JumperCrashed();
             }
             else
             {
-                //TODO: Säg till GameManager att vi räddats
+				gameManager.JumperSaved();
             }
 
         }

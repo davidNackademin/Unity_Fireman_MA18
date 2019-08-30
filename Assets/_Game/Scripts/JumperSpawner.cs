@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameManager))] // kräv att det finns en GameManager på samma object
 public class JumperSpawner : MonoBehaviour
 {
     [SerializeField]
     GameObject jumperPrefab;
 
+	GameManager gameManager;
     float lastSpawnTime;
 
     [Range(0, 5)]
@@ -22,6 +24,8 @@ public class JumperSpawner : MonoBehaviour
     {
         if (jumperPrefab == null)
             return;
+
+		gameManager = GetComponent<GameManager>();
 
         randomSpawnDelay = spawnDelay;
         SpawnJumper();
@@ -39,6 +43,11 @@ public class JumperSpawner : MonoBehaviour
     {
         lastSpawnTime = Time.time;
         randomSpawnDelay = Random.Range(spawnDelay - deltaRandomSpawn, spawnDelay + deltaRandomSpawn);
-        Instantiate(jumperPrefab);
-    }
+        GameObject jumper = Instantiate(jumperPrefab);
+
+		JumperController jumperController = jumper.GetComponentInChildren<JumperController>();
+
+		jumperController.gameManager = gameManager;
+
+	}
 }
