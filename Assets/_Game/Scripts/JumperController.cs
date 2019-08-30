@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class JumperController : MonoBehaviour
 {
-    [SerializeField]
+	public delegate void Jumper();
+	public static event Jumper OnJumperCrash;
+	public static event Jumper OnJumperSave;
+
+	[SerializeField]
     private List<Transform> positions = new List<Transform>();
     public int currentPosition = 0;
     float lastMoveTime;
     float moveDelay = 1.0f;
     float deathDelay = 0.5f;
 
-    [HideInInspector]
-	public GameManager gameManager;
+ //   [HideInInspector]
+	//public GameManager gameManager;
 
     private bool dead = false;
 
@@ -72,11 +76,16 @@ public class JumperController : MonoBehaviour
             if( hit.collider == null)
             {
                 StartCoroutine( Crash() );
-				gameManager.JumperCrashed();
+                if (OnJumperCrash != null)
+				    OnJumperCrash();
+
+				//gameManager.JumperCrashed();
             }
             else
             {
-				gameManager.JumperSaved();
+				if (OnJumperSave != null)
+					OnJumperSave();
+				//gameManager.JumperSaved();
             }
 
         }

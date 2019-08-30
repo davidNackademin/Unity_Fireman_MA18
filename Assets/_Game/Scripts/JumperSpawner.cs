@@ -8,7 +8,7 @@ public class JumperSpawner : MonoBehaviour
     [SerializeField]
     GameObject jumperPrefab;
 
-	GameManager gameManager;
+	//GameManager gameManager;
     float lastSpawnTime;
 
     [Range(0, 5)]
@@ -25,7 +25,7 @@ public class JumperSpawner : MonoBehaviour
         if (jumperPrefab == null)
             return;
 
-		gameManager = GetComponent<GameManager>();
+		//gameManager = GetComponent<GameManager>();
 
         randomSpawnDelay = spawnDelay;
         SpawnJumper();
@@ -45,9 +45,9 @@ public class JumperSpawner : MonoBehaviour
         randomSpawnDelay = Random.Range(spawnDelay - deltaRandomSpawn, spawnDelay + deltaRandomSpawn);
         GameObject jumper = Instantiate(jumperPrefab);
 
-		JumperController jumperController = jumper.GetComponentInChildren<JumperController>();
+		//JumperController jumperController = jumper.GetComponentInChildren<JumperController>();
 
-		jumperController.gameManager = gameManager;
+		//jumperController.gameManager = gameManager;
 
 	}
 }

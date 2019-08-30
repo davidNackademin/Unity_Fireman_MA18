@@ -7,8 +7,19 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public int points = 0;
 
+    void OnEnable()
+	{
+		JumperController.OnJumperCrash += JumperCrashed;
+		JumperController.OnJumperSave += JumperSaved;
+	}
 
-    public void JumperCrashed()
+	void OnDisable()
+	{
+		JumperController.OnJumperCrash -= JumperCrashed;
+		JumperController.OnJumperSave -= JumperSaved;
+	}
+
+	public void JumperCrashed()
 	{
 		Debug.Log("Crash!!!");
 
