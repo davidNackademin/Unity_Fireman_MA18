@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
 
 	public void JumperCrashed()
 	{
-		Debug.Log("Crash!!!");
-
 		lives--;
 	}
 
