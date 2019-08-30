@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public int lives = 3;
-    public int points = 0;
+    int points = 0;
+
+	public TextMeshPro scoreText;
 
     void OnEnable()
 	{
@@ -19,6 +22,12 @@ public class GameManager : MonoBehaviour
 		JumperController.OnJumperSave -= JumperSaved;
 	}
 
+    void Start()
+	{
+		UpdateScoreLabel();
+	}
+
+
 	public void JumperCrashed()
 	{
 		lives--;
@@ -27,7 +36,12 @@ public class GameManager : MonoBehaviour
     public void JumperSaved()
 	{
 		points++;
+		UpdateScoreLabel();
 	}
 
+    void UpdateScoreLabel()
+	{
+		scoreText.text = points.ToString();
+	}
 
 }
