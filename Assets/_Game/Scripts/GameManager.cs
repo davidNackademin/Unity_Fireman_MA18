@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
 	public TextMeshPro scoreText;
 	public LivesController livesController;
+	JumperSpawner jumperSpawner;
 
     void OnEnable()
 	{
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 	{
 		UpdateScoreLabel();
 		livesController.InitLives(startLives);
+		jumperSpawner = GetComponent<JumperSpawner>();
 	}
 
 
@@ -35,6 +37,8 @@ public class GameManager : MonoBehaviour
 		if (!livesController.RemoveLife() )
 		{
 			Debug.Log("GAME OVER!");
+
+			jumperSpawner.Stop();
 		}
 	}
 

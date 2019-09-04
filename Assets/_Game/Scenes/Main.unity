@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3961fec6ef80c4a86b0c70d17359044b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLives: 3
+  startLives: 1
   scoreText: {fileID: 1701258291}
   livesController: {fileID: 1628546131}
 --- !u!4 &1274988220
@@ -703,8 +703,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumperPrefab: {fileID: 3400302986542492355, guid: 05b903d155803469ebabe14fff3a64e6,
     type: 3}
-  spawnDelay: 5
+  spawnDelay: 1
   deltaRandomSpawn: 0
+  jumpers: []
 --- !u!1 &1428459052
 GameObject:
   m_ObjectHideFlags: 0
