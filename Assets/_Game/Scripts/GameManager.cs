@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	string sceneName = "Main";
     public int startLives = 3;
     int points = 0;
 
@@ -12,6 +14,7 @@ public class GameManager : MonoBehaviour
 	public LivesController livesController;
 	JumperSpawner jumperSpawner;
 	public GameObject gameOverSign;
+	public GameObject input;
 
     void OnEnable()
 	{
@@ -38,8 +41,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (!livesController.RemoveLife() )
 		{
-			gameOverSign.SetActive(true);
-			jumperSpawner.Stop();
+			GameOver();
 		}
 	}
 
@@ -52,6 +54,18 @@ public class GameManager : MonoBehaviour
     void UpdateScoreLabel()
 	{
 		scoreText.text = points.ToString();
+	}
+
+    private void GameOver()
+	{
+		gameOverSign.SetActive(true);
+		jumperSpawner.Stop();
+		input.SetActive(false);
+	}
+
+    public void RestartGame()
+	{
+		SceneManager.LoadScene(sceneName);
 	}
 
 }
