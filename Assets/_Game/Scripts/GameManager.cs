@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	public TextMeshPro scoreText;
 	public LivesController livesController;
 	JumperSpawner jumperSpawner;
+	public GameObject gameOverSign;
 
     void OnEnable()
 	{
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
 		UpdateScoreLabel();
 		livesController.InitLives(startLives);
 		jumperSpawner = GetComponent<JumperSpawner>();
+		gameOverSign.SetActive(false);
 	}
 
 
@@ -36,8 +38,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (!livesController.RemoveLife() )
 		{
-			Debug.Log("GAME OVER!");
-
+			gameOverSign.SetActive(true);
 			jumperSpawner.Stop();
 		}
 	}
