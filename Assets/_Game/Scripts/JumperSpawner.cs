@@ -20,8 +20,7 @@ public class JumperSpawner : MonoBehaviour
     private float randomSpawnDelay;
     private bool stop = false;
 
-    public List<GameObject> jumpers = new List<GameObject>();
-
+    private List<GameObject> jumpers = new List<GameObject>();
 
     private void Start()
     {
@@ -50,10 +49,18 @@ public class JumperSpawner : MonoBehaviour
 
 		jumpers.Add(jumper);
 
-		//JumperController jumperController = jumper.GetComponentInChildren<JumperController>();
+        JumperController jumperController = jumper.GetComponentInChildren<JumperController>();
 
-		//jumperController.gameManager = gameManager;
+		jumperController.jumperSpawner = this;
+	}
 
+    public void DestroyJumper(GameObject jumper)
+	{
+		// ta bort jumper ur listan
+		jumpers.Remove(jumper);
+
+		// destroy jumper
+		Destroy(jumper);
 	}
 
 
@@ -61,5 +68,10 @@ public class JumperSpawner : MonoBehaviour
 	{
 		stop = true;
         // gå igenom listan destroy all
+
+        for(int i = jumpers.Count - 1; i >= 0; i-- )
+		{
+			DestroyJumper(jumpers[i]);
+		} 
 	}
 }

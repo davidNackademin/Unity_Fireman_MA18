@@ -15,8 +15,11 @@ public class JumperController : MonoBehaviour
     float moveDelay = 1.0f;
     float deathDelay = 0.5f;
 
- //   [HideInInspector]
+	//   [HideInInspector]
 	//public GameManager gameManager;
+
+	[HideInInspector]
+	public JumperSpawner jumperSpawner;
 
     private bool dead = false;
 
@@ -104,8 +107,11 @@ public class JumperController : MonoBehaviour
 
     void DestroyJumper()
     {
-        GameObject parent = transform.parent.gameObject;
-        Destroy(parent);
+		GameObject parent = transform.parent.gameObject;
+		jumperSpawner.DestroyJumper(parent);
+
+        //GameObject parent = transform.parent.gameObject;
+        //Destroy(parent);
     }
 
 
