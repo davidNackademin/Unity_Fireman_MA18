@@ -8,7 +8,7 @@ public class JumperSpawner : MonoBehaviour
     [SerializeField]
     GameObject jumperPrefab;
 
-	//GameManager gameManager;
+	GameManager gameManager;
     float lastSpawnTime;
 
     [Range(0, 5)]
@@ -16,8 +16,9 @@ public class JumperSpawner : MonoBehaviour
     [Range(0, 2)]
     public float deltaRandomSpawn = 0.5f;
 
+	public float spawnDelayDecreaseSpeed = 0.02f;
 
-    private float randomSpawnDelay;
+	private float randomSpawnDelay;
     private bool stop = false;
 
     private List<GameObject> jumpers = new List<GameObject>();
@@ -27,7 +28,7 @@ public class JumperSpawner : MonoBehaviour
         if (jumperPrefab == null)
             return;
 
-		//gameManager = GetComponent<GameManager>();
+		gameManager = GetComponent<GameManager>();
 
         randomSpawnDelay = spawnDelay;
         SpawnJumper();
@@ -44,7 +45,8 @@ public class JumperSpawner : MonoBehaviour
     private void SpawnJumper()
     {
         lastSpawnTime = Time.time;
-        randomSpawnDelay = Random.Range(spawnDelay - deltaRandomSpawn, spawnDelay + deltaRandomSpawn);
+		float delay = Mathf.Clamp( spawnDelay - ( spawnDelayDecreaseSpeed  * gameManager.Points()), deltaRandomSpawn , spawnDelay) ;
+        randomSpawnDelay = Random.Range(delay - deltaRandomSpawn, delay + deltaRandomSpawn);
         GameObject jumper = Instantiate(jumperPrefab);
 
 		jumpers.Add(jumper);

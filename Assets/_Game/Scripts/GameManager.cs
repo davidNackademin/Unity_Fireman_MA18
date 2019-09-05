@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
 	string sceneName = "Main";
     public int startLives = 3;
-    int points = 0;
+    private int points = 0;
 
 	public TextMeshPro scoreText;
 	public LivesController livesController;
@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
 		gameOverSign.SetActive(false);
 	}
 
+    public int Points()
+	{
+		return points;
+	}
 
 	public void JumperCrashed()
 	{

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+	public AudioClip beep;
+
+	AudioSource audioSource;
+
     private void OnEnable()
     {
         ButtonInput.OnLeft += ButtonInput_OnLeft;
@@ -16,13 +20,20 @@ public class SoundManager : MonoBehaviour
         ButtonInput.OnRight -= ButtonInput_OnRight;
     }
 
+    void Start()
+	{
+		audioSource = GetComponent<AudioSource>();
+		audioSource.clip = beep;
+	}
+
+
     private void ButtonInput_OnRight()
     {
-        Debug.Log("PIP - Right");
+		audioSource.Play();
     }
 
     private void ButtonInput_OnLeft()
     {
-        Debug.Log("PIP - left");
-    }
+		audioSource.Play();
+	}
 }
