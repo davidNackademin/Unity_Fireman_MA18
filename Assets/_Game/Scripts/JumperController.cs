@@ -76,7 +76,7 @@ public class JumperController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position,  Vector2.down,
                                                     Mathf.Infinity, layerMask);
             //om ingen fireman finns under oss
-            if( hit.collider == null)
+            if( hit.collider == null )
             {
                 StartCoroutine( Crash() );
                 if (OnJumperCrash != null)
