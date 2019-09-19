@@ -27,6 +27,7 @@ public class JumperController : MonoBehaviour
 
     void OnEnable()
 	{
+		dead = false;
 		currentPosition = 0;
 		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.color = Color.green;
@@ -36,11 +37,10 @@ public class JumperController : MonoBehaviour
 		StartCoroutine(Move());
 	}
 
-
-    void OnDisable()
-	{
-		StopCoroutine(Move());
-	}
+ //   void OnDisable()
+	//{
+	//	StopCoroutine(Move());
+	//}
 
 
     //private void Start()
