@@ -25,13 +25,31 @@ public class JumperController : MonoBehaviour
 
     public LayerMask layerMask;
 
-    private void Start()
-    {
-        UpdatePosition();
-        lastMoveTime = Time.time;
+    void OnEnable()
+	{
+		currentPosition = 0;
+		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer.color = Color.green;
+		UpdatePosition();
+		lastMoveTime = Time.time;
 
-        StartCoroutine(Move());
-    }
+		StartCoroutine(Move());
+	}
+
+
+    void OnDisable()
+	{
+		StopCoroutine(Move());
+	}
+
+
+    //private void Start()
+    //{
+    //    UpdatePosition();
+    //    lastMoveTime = Time.time;
+
+    //    StartCoroutine(Move());
+    //}
 
     //private void Update()
     //{

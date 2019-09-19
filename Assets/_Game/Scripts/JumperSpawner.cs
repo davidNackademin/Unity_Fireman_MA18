@@ -23,16 +23,45 @@ public class JumperSpawner : MonoBehaviour
 
     private List<GameObject> jumpers = new List<GameObject>();
 
+	public int poolSize = 10;
+	private List<GameObject> jumperPool = new List<GameObject>();
+
     private void Start()
     {
         if (jumperPrefab == null)
             return;
 
+		InitJumperPool();
 		//gameManager = GetComponent<GameManager>();
 
         randomSpawnDelay = spawnDelay;
         SpawnJumper();
     }
+
+    private void InitJumperPool()
+	{
+        for(int i = 0; i< poolSize; i++)
+		{
+			GameObject jumper = Instantiate(jumperPrefab);
+			jumper.SetActive(false);
+			jumperPool.Add(jumper);
+		}
+	}
+
+    GameObject GetJumper()
+	{
+        foreach(GameObject jumper in jumperPool)
+		{
+            if (!jumper.activeInHierarchy)
+			{
+				jumper.SetActive(true);
+				return jumper;
+			}
+		}
+
+		return null;
+	}
+
 
     private void Update()
     {
@@ -47,7 +76,8 @@ public class JumperSpawner : MonoBehaviour
         lastSpawnTime = Time.time;
 		float delay = Mathf.Clamp( spawnDelay - ( spawnDelayDecreaseSpeed  * GameManager.Instance.Points()), deltaRandomSpawn , spawnDelay) ;
         randomSpawnDelay = Random.Range(delay - deltaRandomSpawn, delay + deltaRandomSpawn);
-        GameObject jumper = Instantiate(jumperPrefab);
+		//GameObject jumper = Instantiate(jumperPrefab);
+		GameObject jumper = GetJumper();
 
 		jumpers.Add(jumper);
 
@@ -62,18 +92,19 @@ public class JumperSpawner : MonoBehaviour
 		jumpers.Remove(jumper);
 
 		// destroy jumper
-		Destroy(jumper);
+		//Destroy(jumper);
+		jumper.SetActive(false);
 	}
 
 
     public void Stop()
 	{
 		stop = true;
-        // gå igenom listan destroy all
+		// gå igenom listan destroy all
 
-        for(int i = jumpers.Count - 1; i >= 0; i-- )
+		for (int i = jumpers.Count - 1; i >= 0; i--)
 		{
 			DestroyJumper(jumpers[i]);
-		} 
+		}
 	}
 }
