@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameOverSignController : MonoBehaviour
 {
-	public GameManager gameManager;
+	//public GameManager gameManager;
 
     public void OnMouseDown()
 	{
-		gameManager.RestartGame();
+		GameManager.Instance.RestartGame();
 	}
 
 }

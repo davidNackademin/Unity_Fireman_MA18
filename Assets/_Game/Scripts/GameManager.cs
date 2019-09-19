@@ -7,14 +7,41 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 	string sceneName = "Main";
-    public int startLives = 3;
-    private int points = 0;
+	public int startLives = 3;
+	private int points = 0;
 
 	public TextMeshPro scoreText;
 	public LivesController livesController;
 	JumperSpawner jumperSpawner;
 	public GameObject gameOverSign;
 	public GameObject input;
+
+	private static GameManager _instance;
+
+	public static GameManager Instance { get {
+
+            if (_instance == null) {
+                _instance = Instantiate(Resources.Load<GameObject>("GameManager")).GetComponent<GameManager>();
+            }
+
+            return _instance;
+        }   
+    }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+		{
+			Destroy(gameObject);
+		}
+        else
+		{
+			_instance = this;
+            //dont destroy on load - om vi vill spara vår gameManager till nästa scene
+		}
+
+    }
+
 
     void OnEnable()
 	{
